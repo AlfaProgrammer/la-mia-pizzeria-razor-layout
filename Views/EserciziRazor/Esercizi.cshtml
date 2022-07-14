@@ -81,17 +81,37 @@
     }
 
     //Esercizio 5
+    var day = DateTime.Now.ToString("yyyy-MM-dd");
+    var time = DateTime.Now.ToString("HH:mm:ss");
+
+    //Esercizio 6
+    var todaysDate = DateTime.Now;
+    string DaysAgo(int x)
+    {
+        var daysAgo = todaysDate.AddDays(-x).ToString("yyyy-MM-dd");
+
+        return daysAgo;
+    }
+
 }
 @*Esercizio 1*@
-<h2>@name @surname</h2>
+<h4>Esercizio 1</h4>
+
+<p>@name @surname</p>
 
 @*Esercizio 2*@
+<h4>Esercizio 2</h4>
+
 <p>La somma dei numeri è @NumbersSumUpTo(4)</p>
 
 @*Esercizio 3*@
+<h4>Esercizio 3</h4>
+
 <p>La lettera "a" è presente @CountCharOnString('a', stringToTest) volte nella frase "@stringToTest" </p>
 
 @*Esercizio 4*@
+<h4>Esercizio 4</h4>
+
 <p>
     Numeri compresi tra 20 e 70 nella lista Random: 
     @foreach(var num in SortNumbBetween(20, 70, randomNumbersList))
@@ -101,3 +121,13 @@
 </p>
 
 @*Esercizio 5*@
+<h4>Esercizio 5</h4>
+<p>Data: @day</p>
+<p>Ora: @time</p>
+
+@*Esercizio 6*@
+<h4>Esercizio 6</h4>
+<p>Data di Oggi: @todaysDate.ToString("yyyy-MM-dd")</p>
+<p>Data di 7 giorni fa: @DaysAgo(7)</p>
+<p>Oggi è: @todaysDate.DayOfWeek.ToString()</p>
+<p>Tra un anno la dati di oggi corrisponderà al girno: @todaysDate.AddYears(1).DayOfWeek.ToString()</p>
