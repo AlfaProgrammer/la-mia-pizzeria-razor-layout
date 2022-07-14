@@ -1,0 +1,103 @@
+﻿@{
+    ViewData["Title"] = "Esercizi Razor";
+}
+
+<h1 class="bg-success p-2 text-light">Pagina Esercizi Razor</h1>
+
+@*1. Dichiarare una variabile valorizzandola con il nostro nome.
+   Dichiarare un'altra variabile valorizzandola con il nostro cognome.
+   Stampare il nostro nome e cognome all'interno di un tag h2.
+
+2. Creare una funzione che stampa la somma dei numeri che vanno da 1 a n (con n passato come parametro - n incluso)
+   Stampare dentro uno span il risultato.
+
+3. Contare quante volte la lettera a è presente nalla frase "nel mezzo del cammin di nostra vita" e stampare questo valore in pagina
+
+4. Creare una List<int> di 20 numeri interi (generati random da 1 a 90, 1 e 90 inclusi) 
+   e mostrare in pagina solo i numeri compresi tra 20 e 70
+
+5. Stampare in pagina la data e l'ora attuale (usando la classe DateTime) con il formato anno-mese-giorno ore:minuti:secondi
+
+6. Partendo dalla data di oggi (usando la classe DateTime) stampare in pagina
+    a. la data di 7 giorni fa
+    b. che giorno della settimana è oggi (il risultato dovrà essere il nome del giorno (Lunedì, Martedì, ...)
+    c. che giorno della settimana sarà nello stesso giorno e mese di oggi ma tra un anno
+    (il risultato dovrà essere il nome del giorno (Lunedì, Martedì, ...)*@
+
+@{
+    // Esercizio 1
+    string name = "Alex";
+    string surname = "Loghin";
+    //Esercizio 2
+    int NumbersSumUpTo(int n)
+    {
+        int sum = 0;
+        for (int i = 1; i <= n; i++)
+        {
+            sum += i;
+        }
+        return sum;
+    }
+
+    //Esercizio 3
+    string stringToTest = "nel mezzo del cammin di nostra vita";
+    int CountCharOnString(char charToCount, string targetString)
+    {
+        int counter = 0;
+
+        foreach (char letter in targetString)
+        {
+            if (letter == charToCount)
+            {
+                counter++;
+            }
+        }
+
+        return counter;
+    }
+
+    //Esercizio 4
+    List<int> randomNumbersList = new List<int>();
+
+    for (var i = 0; i < 20; i++)
+    {
+        var randomN = new Random().Next(1, 91);
+        randomNumbersList.Add(randomN);
+    }
+
+    List<int> SortNumbBetween(int min, int max, List<int> targetList)
+    {
+        List<int> sortedlist = new List<int>();
+
+        foreach (int num in targetList)
+        {
+            if (num >= min && num <= max)
+            {
+                sortedlist.Add(num);
+            }
+        }
+
+        return sortedlist;
+    }
+
+    //Esercizio 5
+}
+@*Esercizio 1*@
+<h2>@name @surname</h2>
+
+@*Esercizio 2*@
+<p>La somma dei numeri è @NumbersSumUpTo(4)</p>
+
+@*Esercizio 3*@
+<p>La lettera "a" è presente @CountCharOnString('a', stringToTest) volte nella frase "@stringToTest" </p>
+
+@*Esercizio 4*@
+<p>
+    Numeri compresi tra 20 e 70 nella lista Random: 
+    @foreach(var num in SortNumbBetween(20, 70, randomNumbersList))
+    {
+        <span>@num </span>
+    }
+</p>
+
+@*Esercizio 5*@
